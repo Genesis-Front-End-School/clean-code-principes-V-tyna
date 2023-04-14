@@ -1,0 +1,54 @@
+<mat-card
+  class="card"
+  (mouseenter)="playVideoHandler()"
+  (mouseleave)="pauseVideoHandler()"
+  (click)="clickHandler()"
+>
+  <mat-card-header>
+    <mat-card-title>{{ course.title }}</mat-card-title>
+  </mat-card-header>
+  <div class="subtitle-container">
+    <mat-card-subtitle>Start: {{ course.launchDate | date }}</mat-card-subtitle>
+    <mat-card-subtitle>Lessons: {{ course.lessonsCount }}</mat-card-subtitle>
+  </div>
+  <div class="content-container">
+    <img
+      *ngIf="!isPlayingVideo"
+      mat-card-image
+      [src]="course.previewImageLink + '/cover.webp'"
+      alt="{{ course.title }}"
+    />
+    <video
+      [ngClass]="!isPlayingVideo ? 'hide-element' : null"
+      #cardVideo
+      autoplay="true"
+      crossorigin
+      muted="true"
+    ></video>
+  </div>
+  <mat-card-content>
+    <p>{{ course.description }}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <div *ngIf="course.meta.skills" class="skills">
+      <p>Skills:</p>
+      <small *ngFor="let skill of course.meta.skills; let i = index"
+        >{{ skill }}<small *ngIf="i < course.meta.skills.length - 1">, </small>
+      </small>
+    </div>
+  </mat-card-content>
+  <div class="starts">
+    <p>{{ course.rating }}</p>
+    <ngx-stars
+      [readonly]="true"
+      [maxStars]="5"
+      [size]="2"
+      [color]="'#4d9aaf'"
+      [initialStars]="course.rating"
+    ></ngx-stars>
+  </div>
+  <mat-progress-bar
+    mode="determinate"
+    [value]="(100 * course.rating) / 5"
+  ></mat-progress-bar>
+</mat-card>

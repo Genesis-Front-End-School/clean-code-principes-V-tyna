@@ -1,0 +1,86 @@
+.list-container {
+  margin-top: 5rem;
+  border-top: 1px solid #ccc;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #99ddcc;
+  height: 3rem;
+}
+
+h3 {
+  margin-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.active {
+  background-color: #99ddcc;
+}
+
+.list-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+.list-card img {
+  height: 100%;
+}
+
+.list-card p {
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+.locked {
+  width: 175px;
+  height: 100%;
+  background-color: #ffe2e2;
+}
+
+.locked:hover {
+  cursor: not-allowed;
+}
+
+.unlocked {
+  width: 175px;
+  height: 100%;
+  background-color: #99ddcc;
+  transition: all 0.3s ease-in;
+}
+
+.unlocked:hover {
+  cursor: pointer;
+  background-color: #bad7df;
+  transition: all 0.3s ease-in;
+}
+
+.list-card button {
+  border: none;
+}
+
+.mat-icon {
+  position: relative;
+  top: 6px;
+}
+
+.speed-info {
+  margin-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .list-card img {
+    display: none;
+  }
+
+  .locked {
+    min-width: 10%;
+  }
+
+  .unlocked {
+    min-width: 10%;
+  }
+}

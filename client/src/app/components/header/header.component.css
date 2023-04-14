@@ -1,0 +1,25 @@
+.header-container {
+  height: 5rem;
+  background-color: #bad7df;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-container:hover {
+  cursor: pointer;
+}
+
+.header-container h1 {
+  color: #243763;
+  margin-bottom: 0;
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.icon {
+  color: #243763;
+}

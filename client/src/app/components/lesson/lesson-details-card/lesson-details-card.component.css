@@ -1,0 +1,33 @@
+.details-container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  text-align: center;
+  margin-bottom: 0;
+  line-height: 1.3rem;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 30%;
+}
+
+.image img {
+  margin-right: 0.7rem;
+  width: 100%;
+  border-radius: 20px;
+}

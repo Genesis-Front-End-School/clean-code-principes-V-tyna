@@ -1,0 +1,33 @@
+<div class="layout-lesson" *ngIf="course$ | async as course; else loader">
+  <div *ngIf="course.id; else notFound">
+    <div class="lesson-container">
+      <div class="video-container">
+        <app-video-container
+          [videoId]="course.id"
+          [videoLink]="course.meta.courseVideoPreview?.link"
+        ></app-video-container>
+      </div>
+      <div class="lesson-details-container">
+        <app-lesson-details-card
+          [lessonDetails]="course"
+        ></app-lesson-details-card>
+      </div>
+    </div>
+    <div class="lessons-list">
+      <app-lessons-list
+        [lessonsList]="course.lessons"
+        [initLessonTitle]="course.title"
+      ></app-lessons-list>
+    </div>
+  </div>
+</div>
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+<ng-template #notFound>
+  <div class="not-found">
+    <app-page-not-found></app-page-not-found>
+  </div>
+</ng-template>

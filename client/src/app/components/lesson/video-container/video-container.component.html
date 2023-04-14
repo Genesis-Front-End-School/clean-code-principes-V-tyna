@@ -1,0 +1,28 @@
+<div class="video-container">
+  <video
+    [id]="videoId"
+    #video
+    controls
+    crossorigin
+    autoplay
+    width="100%"
+    type="application/x-mpegURL"
+    (pause)="pauseHandler($event)"
+    (keydown.arrowup)="speedUpHandler($event)"
+    (keydown.arrowdown)="speedDownHandler($event)"
+    (leavepictureinpicture)="leavePictureInPictureHandler($event)"
+    (loadstart)="startLoaderHandler()"
+    (canplay)="stopLoaderHandler()"
+  ></video>
+  <mat-spinner *ngIf="isLoading" class="loader"></mat-spinner>
+</div>
+
+<h2 *ngIf="videoStreamError">
+  Playing video error. Sorry for inconvenience. Our team working on it.
+</h2>
+<div class="speed-info" *ngIf="!videoStreamError">
+  <div>
+    Current speed is: <span>{{ currentSpeed }}</span>
+  </div>
+  <button (click)="togglePictureInPicture()">Toggle picture-in-picture</button>
+</div>

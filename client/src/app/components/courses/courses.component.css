@@ -1,0 +1,35 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 3rem auto;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #bad7df;
+}
+
+.courses-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5rem;
+}
+
+.lesson-link {
+  text-decoration: none;
+  color: black;
+}
+
+.main-container {
+  position: relative;
+}
+
+.paginator {
+  position: fixed;
+  width: 100%;
+  margin-top: 2rem;
+  bottom: 0;
+  z-index: 1000;
+}

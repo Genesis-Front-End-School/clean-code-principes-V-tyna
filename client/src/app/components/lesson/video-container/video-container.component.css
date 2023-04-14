@@ -1,0 +1,53 @@
+video {
+  height: 450px;
+}
+
+.speed-info {
+  width: 100%;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.speed-info span {
+  margin: 0.5 rem;
+  font-size: 1.3rem;
+  background-color: #bad7df;
+  border-radius: 5px;
+}
+
+.speed-info button {
+  padding: 1rem;
+  background-color: #bad7df;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  box-shadow: 3px 3px 8px #ccc;
+  transition: all 0.3s ease-in-out;
+}
+
+.speed-info button:hover {
+  cursor: pointer;
+  background-color: #99ddcc;
+  transition: all 0.3s ease-in-out;
+}
+
+.video-container {
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: #bad7df;
+}
+
+@media (max-width: 768px) {
+  video {
+    height: 300px;
+  }
+}
