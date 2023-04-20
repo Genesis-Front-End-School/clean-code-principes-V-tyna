@@ -26,12 +26,9 @@ export class LessonsListComponent implements OnInit {
     this.videoService.setVideoId(id);
     this.setCurrentLesson(id, idx);
 
-    // Before each new play, previous video (that is still current playing) has been stopped.
-    // pauseHandler() in video-container.component.ts writes data into LocalStorage to save currentTime for this video.
     const currentRef = this.videoService.videoRef;
     currentRef?.nativeElement.pause();
 
-    // Check if there is data in the LocalStorage with timeline for the video
     const videoData = localStorage.getItem(id);
     if (videoData && currentRef) {
       const { link, currentTime } = JSON.parse(videoData);
@@ -39,7 +36,6 @@ export class LessonsListComponent implements OnInit {
       return;
     }
 
-    // Initially play video
     if (currentRef) {
       await this.videoService.runVideoStream(link, currentRef, 0);
     }
@@ -47,6 +43,6 @@ export class LessonsListComponent implements OnInit {
 
   private setCurrentLesson(id: string, idx: number): void {
     const searchingLesson = this.lessonsList.find((lesson: Lesson) => lesson.id === id);
-    this.currentLesson = idx + 1 + '. ' + searchingLesson?.title;
+    this.currentLesson = `${idx + 1}.${searchingLesson!.title}`;
   }
 }

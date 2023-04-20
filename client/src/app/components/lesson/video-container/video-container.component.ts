@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, DoCheck, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { VIDEO_SPEED_STEP } from '../../../configs/constants';
 import { VideoService } from '../../../services/video.service';
 
 @Component({
@@ -17,25 +18,23 @@ export class VideoContainerComponent implements OnInit, DoCheck, OnDestroy {
   constructor(private videoService: VideoService) { }
 
   public async ngOnInit(): Promise<void> {
-    // Initially pass videoRef into VideoService
     this.videoService.videoRef = this.videoRef;
     this.currentSpeed = this.videoRef.nativeElement.playbackRate;
 
-    // Don't allow to execute code below if pictureInPicture still in the document
     if (document.pictureInPictureElement) {
       return;
     }
 
-    // Check if there is data in the LocalStorage with timeline for the video
     const videoData = localStorage.getItem(this.videoId);
     if (videoData) {
       const { link, currentTime } = JSON.parse(videoData);
+
       this.videoService.setVideoLink(link);
       await this.videoService.runVideoStream(link, this.videoRef, +currentTime);
+
       return;
     }
 
-    // Initially play video
     if (this.videoLink) {
       await this.videoService.runVideoStream(this.videoLink, this.videoRef, 0);
     }
@@ -67,13 +66,13 @@ export class VideoContainerComponent implements OnInit, DoCheck, OnDestroy {
 
   public speedUpHandler(e: Event): void {
     const ref = <HTMLVideoElement>e.target;
-    ref.playbackRate = ref.playbackRate + 0.25;
+    ref.playbackRate = ref.playbackRate + VIDEO_SPEED_STEP;
     this.currentSpeed = ref.playbackRate;
   }
 
   public speedDownHandler(e: Event): void {
     const ref = <HTMLVideoElement>e.target;
-    ref.playbackRate = ref.playbackRate - 0.25;
+    ref.playbackRate = ref.playbackRate - VIDEO_SPEED_STEP;
     this.currentSpeed = ref.playbackRate;
   }
 
@@ -87,7 +86,9 @@ export class VideoContainerComponent implements OnInit, DoCheck, OnDestroy {
 
   public ngOnDestroy(): void {
     if (this.videoLink) {
-      this.videoService.setVideoDataToLocalStorage(this.videoRef.nativeElement.currentTime, this.videoRef.nativeElement.id, this.videoLink);
+      const { currentTime, id } = this.videoRef.nativeElement;
+
+      this.videoService.setVideoDataToLocalStorage(currentTime, id, this.videoLink);
     }
   }
 
