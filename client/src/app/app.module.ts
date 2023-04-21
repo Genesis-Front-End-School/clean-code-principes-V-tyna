@@ -22,7 +22,6 @@ import { CourseComponent } from './components/lesson/course.component';
 import { LessonDetailsCardComponent } from './components/lesson/lesson-details-card/lesson-details-card.component';
 import { LessonsListComponent } from './components/lesson/lessons-list/lessons-list.component';
 import { VideoContainerComponent } from './components/lesson/video-container/video-container.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     HeaderComponent,
     LessonDetailsCardComponent,
     LessonsListComponent,
-    PageNotFoundComponent,
     VideoContainerComponent,
   ],
   imports: [

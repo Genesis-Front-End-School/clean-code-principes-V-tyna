@@ -23,7 +23,11 @@
   <p>Something went wrong...</p>
   <br />
   <p>
-    Sorry for inconvenience. Our team is working on a solution to the problem.
+    {{
+      error?.error.message
+        ? "Sorry for inconvenience. Our team is working on a solution to the problem."
+        : error?.message
+    }}
   </p>
   <div class="buttons">
     <button class="btn" (click)="backOnPreviousPageHandler()">Back</button>
