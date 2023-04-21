@@ -43,7 +43,6 @@ export class VideoService {
     if (response) {
       this.playVideo(link, ref, currentTime);
     } else {
-      // Change link (small hack) to play video.
       const alternativeLink = this.simulateDifferentLinks();
       this.playVideo(alternativeLink, ref, currentTime);
       // To handle video stream errors, delete 2 lines above and uncomment 2 lines below:

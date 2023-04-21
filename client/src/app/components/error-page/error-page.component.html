@@ -25,8 +25,8 @@
   <p>
     {{
       error?.error.message
-        ? "Sorry for inconvenience. Our team is working on a solution to the problem."
-        : error?.message
+        ? error?.error.message
+        : "Sorry for inconvenience. Our team is working on a solution to the problem."
     }}
   </p>
   <div class="buttons">

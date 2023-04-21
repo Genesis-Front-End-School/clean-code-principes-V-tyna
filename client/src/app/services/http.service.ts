@@ -8,6 +8,7 @@ import { CourseDetail } from '../models/lesson.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpService {
   public error: HttpErrorResponse;
 
