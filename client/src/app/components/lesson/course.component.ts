@@ -31,7 +31,7 @@ export class CourseComponent implements OnInit, OnDestroy {
           this.httpService.error = e;
           this.router.navigate(['/error-page']);
         }
-      })
+      });
       this.videoService.setVideoId(params['courseId']);
     });
   }

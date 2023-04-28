@@ -1,5 +1,5 @@
 import { ElementRef, Injectable } from '@angular/core';
-import Hls from 'hls.js';
+import Hls, { HlsConfig } from 'hls.js';
 import { errorLinkHandler } from '../shared/error-link.handler';
 
 const DUMMY_LINKS = [
@@ -15,7 +15,7 @@ const DUMMY_LINKS = [
 export class VideoService {
   public videoRef?: ElementRef<HTMLVideoElement>;
   public hlsElement?: Hls;
-  public videoStreamError?: any
+  public videoStreamError: boolean;
   private videoId!: string;
   private videoLink?: string;
 
@@ -54,22 +54,19 @@ export class VideoService {
   public playVideo(videoSrc: string, videoRef: ElementRef<HTMLVideoElement>, currentTime: number): void {
     videoRef.nativeElement.id = this.getVideoId();
     this.setVideoLink(videoSrc);
+
     if (Hls.isSupported() && videoSrc) {
-      const config = {
+      const config = <HlsConfig>{
         startPosition: currentTime
       }
-      const hls = new Hls(config);
-      hls.loadSource(videoSrc);
-      hls.attachMedia(videoRef.nativeElement);
+      this.hlsHandler(videoSrc, videoRef, config);
     }
   }
 
   public playPreviewVideo(link: string, videoRef: ElementRef<HTMLVideoElement>): void {
     if (Hls.isSupported()) {
-      const hls = new Hls();
+      const hls = this.hlsHandler(link, videoRef);
       this.hlsElement = hls;
-      hls.loadSource(link);
-      hls.attachMedia(videoRef.nativeElement);
     }
   }
 
@@ -80,5 +77,20 @@ export class VideoService {
   public simulateDifferentLinks(): string {
     const randomIndex = Math.round(Math.random() * (DUMMY_LINKS.length - 2) + 1);
     return DUMMY_LINKS[randomIndex];
+  }
+
+  private hlsHandler(link: string, videoRef: ElementRef<HTMLVideoElement>, config?: HlsConfig): Hls {
+    let hls: Hls;
+
+    if (config) {
+      hls = new Hls(config);
+    } else {
+      hls = new Hls();
+    }
+
+    hls.loadSource(link);
+    hls.attachMedia(videoRef.nativeElement);
+
+    return hls;
   }
 }

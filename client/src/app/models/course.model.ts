@@ -22,3 +22,8 @@ export interface CourseMetaData {
     previewImageLink: string,
   }
 }
+
+export interface CourseResponse {
+  courses: Course[];
+  allCoursesLength: string
+}

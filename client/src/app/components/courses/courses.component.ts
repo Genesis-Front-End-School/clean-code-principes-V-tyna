@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { Course } from '../../models/course.model';
+import { Course, CourseResponse } from '../../models/course.model';
 import { HttpService } from '../../services/http.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.getCourses({ limit: 10, offset: 0 });
     this.subscription = this.courses$?.subscribe({
-      next: (result: { courses: Course[], allCoursesLength: string }) => {
+      next: (result: CourseResponse) => {
         this.allCoursesLength = +result.allCoursesLength;
       },
       error: (e: HttpErrorResponse) => {

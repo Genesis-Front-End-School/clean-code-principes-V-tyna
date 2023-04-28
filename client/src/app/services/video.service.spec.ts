@@ -1,21 +1,25 @@
 import { ElementRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import * as errorHandler from '../../app/shared/error-link.handler';
+import Hls, { HlsConfig } from 'hls.js';
 
 import { VideoService } from './video.service';
 
-jest.mock('../shared/error-link.handler', () => {
-  return {
-    errorLinkHandler: jest.fn().mockReturnValueOnce(true)
-      .mockReturnValueOnce(false)
-  }
-});
-
 describe('VideoService', () => {
+  const mockElementRef = <ElementRef<HTMLVideoElement>>{
+    nativeElement: {
+      id: 'djjksd-djkd-83jx'
+    }
+  };
   let service: VideoService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(VideoService);
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks();
   });
 
   it('should be created', () => {
@@ -53,11 +57,6 @@ describe('VideoService', () => {
     let link = 'https://wisey.app/videos/think-creatively-solve-problems-easily/lesson-5/AppleHLS1/lesson-5.m3u8';
     const alternativeLink = 'https://validLink';
     const time = 56.009;
-    const mockElementRef = <ElementRef<HTMLVideoElement>>{
-      nativeElement: {
-        id: 'djjksd-djkd-83jx'
-      }
-    };
 
     beforeEach(() => {
       service.playVideo = jest.fn();
@@ -65,8 +64,10 @@ describe('VideoService', () => {
     });
 
     it('should call playVideo function with current link, if get VALID link', async () => {
+      jest.spyOn(errorHandler, 'errorLinkHandler').mockReturnValueOnce(Promise.resolve(true));
       await service.runVideoStream(link, mockElementRef, time);
 
+      expect(errorHandler.errorLinkHandler).toHaveBeenCalled();
       expect(service.playVideo).toHaveBeenCalledWith(link, mockElementRef, time);
       expect(service.simulateDifferentLinks).not.toHaveBeenCalled();
     });
@@ -80,6 +81,60 @@ describe('VideoService', () => {
 
       expect(service.playVideo).toHaveBeenCalledWith(alternativeLink, mockElementRef, time);
       expect(service.simulateDifferentLinks).toHaveBeenCalled();
+    });
+  });
+
+  describe('playVideo', () => {
+    const link = 'https://wisey.app/videos/think-creatively-solve-problems-easily/lesson-5/AppleHLS1/lesson-5.m3u8';
+
+    beforeEach(() => {
+      jest.spyOn(Hls, 'isSupported').mockReturnValue(true);
+      service.setVideoLink = jest.fn();
+      service['hlsHandler'] = jest.fn();
+    });
+
+    it('should set id to passed parameter videoRef, set video link and call private method "hlsHandler" with correct parameters', () => {
+      const config = <HlsConfig>{
+        startPosition: 0
+      };
+      service.setVideoId('aaa-bbb');
+      jest.spyOn(service, 'playVideo');
+
+      service.playVideo(link, mockElementRef, 0);
+
+      expect(mockElementRef.nativeElement.id).toEqual('aaa-bbb');
+      expect(service.setVideoLink).toHaveBeenCalled();
+      expect(service['hlsHandler']).toHaveBeenCalledWith(link, mockElementRef, config);
+    });
+
+    it('should call private method "hlsHandler" with correct parameters and set hlsElement', () => {
+      const mockHls = new Hls();
+      jest.spyOn(service, 'playVideo');
+      service['hlsHandler'] = jest.fn().mockReturnValue(mockHls);
+
+      service.playPreviewVideo(link, mockElementRef);
+
+      expect(service['hlsHandler']).toHaveBeenCalledWith(link, mockElementRef);
+      expect(service.hlsElement).toEqual(mockHls);
+    });
+  });
+
+  describe('setVideoDataToLocalStorage', () => {
+    it('should call LocalStorage.setItem', () => {
+      const originalLS = window.localStorage
+      Object.defineProperty(window, 'localStorage', {
+        value: { setItem: jest.fn() },
+      });
+
+      jest.spyOn(service, 'setVideoDataToLocalStorage');
+
+      service.setVideoDataToLocalStorage(0, 'someId', 'http://some-link');
+
+      expect(localStorage.setItem).toHaveBeenCalled();
+
+      Object.defineProperty(window, 'localStorage', {
+        value: originalLS,
+      });
     });
   });
 });
