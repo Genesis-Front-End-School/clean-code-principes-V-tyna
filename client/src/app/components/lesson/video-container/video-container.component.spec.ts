@@ -34,7 +34,8 @@ describe('VideoContainerComponent', () => {
     component.videoLink = 'http://some-link';
     component.videoRef = <ElementRef<HTMLVideoElement>><unknown>{
       nativeElement: {
-        id: 'djjksd-djkd-83jx'
+        id: 'djjksd-djkd-83jx',
+        requestPictureInPicture: jest.fn()
       },
       playbackRate: 1
     };
@@ -132,6 +133,55 @@ describe('VideoContainerComponent', () => {
       component.pauseHandler(new Event('mouse-leave'));
 
       expect(component['setVideoDataToLocalStorage']).toHaveBeenCalled();
+    });
+  });
+
+  describe('togglePictureInPicture', () => {
+    const originalPictureInPictureElement = document.pictureInPictureElement;
+
+    beforeEach(() => {
+
+    });
+
+    afterEach(() => {
+      Object.defineProperty(document, 'pictureInPictureElement', {
+        value: originalPictureInPictureElement
+      });
+
+      jest.resetAllMocks();
+    });
+
+    it('should display video pictureInPicture', async () => {
+      Object.defineProperty(document, 'pictureInPictureElement', {
+        value: true
+      });
+
+      await component.togglePictureInPicture();
+
+      expect(component.videoRef.nativeElement.requestPictureInPicture).toHaveBeenCalled();
+    });
+
+    it('should close video pictureInPicture if document.pictureInPictureElement is equal to current videoRef', async () => {
+      Object.defineProperty(document, 'pictureInPictureElement', {
+        value: component.videoRef.nativeElement,
+      });
+
+      document.exitPictureInPicture = jest.fn();
+      jest.spyOn(document, 'exitPictureInPicture');
+
+      await component.togglePictureInPicture();
+
+      expect(component.videoRef.nativeElement.requestPictureInPicture).not.toHaveBeenCalled();
+      expect(document.exitPictureInPicture).toHaveBeenCalled();
+    });
+
+    it('should call console.error if ERROR occur', async () => {
+      jest.spyOn(console, 'error').mockImplementation(() => { });
+      jest.spyOn(component.videoRef.nativeElement, 'requestPictureInPicture').mockRejectedValue(new Error('Test error'));
+
+      await component.togglePictureInPicture();
+
+      expect(console.error).toHaveBeenCalled();
     });
   });
 
