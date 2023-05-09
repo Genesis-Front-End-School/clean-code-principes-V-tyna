@@ -7,6 +7,7 @@ video {
   margin: 1rem;
   display: flex;
   justify-content: space-between;
+  color: var(--text-color);
 }
 
 .speed-info span {
@@ -16,9 +17,14 @@ video {
   border-radius: 5px;
 }
 
+.speed-value {
+  color: black;
+}
+
 .speed-info button {
   padding: 1rem;
-  background-color: #bad7df;
+  background-color: var(--secondary-btn-bg-color);
+  color: var(--secondary-btn-txt-color);
   border: none;
   border-radius: 12px;
   font-weight: 600;
@@ -28,12 +34,14 @@ video {
 
 .speed-info button:hover {
   cursor: pointer;
-  background-color: #99ddcc;
+  background-color: var(--btn-bg-color);
+  color: var(--btn-txt-color);
   transition: all 0.3s ease-in-out;
 }
 
 .video-container {
   position: relative;
+  background-color: var(--bkg-color);
 }
 
 .loader {

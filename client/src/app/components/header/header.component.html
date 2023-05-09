@@ -1,5 +1,13 @@
 <mat-toolbar class="header-container" (click)="goToHomePageHandler()">
   <h1>Courses</h1>
   <span class="header-spacer"></span>
+  <mat-slide-toggle
+    class="dark-theme-toggler"
+    [checked]="isDark"
+    color="primary"
+    (click)="toggleTheme($event)"
+  >
+    <h3>Dark theme is {{ isDark ? "on" : "off" }}</h3>
+  </mat-slide-toggle>
   <mat-icon class="icon">home</mat-icon>
 </mat-toolbar>

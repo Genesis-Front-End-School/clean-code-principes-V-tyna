@@ -14,14 +14,15 @@
   justify-content: center;
   min-width: 70%;
   height: 450px;
-  background-color: #f6f6f6;
+  background-color: var(--bkg-color);
 }
 
 .lesson-details-container {
   display: flex;
   min-width: 30%;
   min-height: 100px;
-  background-color: #ffe2e2;
+  background-color: var(--secondary-bkg-color);
+  color: var(--text-color);
 }
 
 .loader {

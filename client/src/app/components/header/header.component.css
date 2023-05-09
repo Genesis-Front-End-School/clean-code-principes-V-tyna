@@ -1,6 +1,6 @@
 .header-container {
   height: 5rem;
-  background-color: #bad7df;
+  background-color: var(--header-bkg-color);
   padding: 2rem;
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,7 @@
 }
 
 .header-container h1 {
-  color: #243763;
+  color: var(--text-color);
   margin-bottom: 0;
 }
 
@@ -21,5 +21,14 @@
 }
 
 .icon {
-  color: #243763;
+  color: var(--text-color);
+}
+
+.dark-theme-toggler {
+  margin-right: 1rem;
+}
+
+h3 {
+  margin-bottom: 0;
+  color: var(--text-color);
 }

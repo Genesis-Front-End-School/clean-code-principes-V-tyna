@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  public isDark = false;
+
   constructor(private router: Router) { }
 
   public goToHomePageHandler(): void {
     this.router.navigate(['']);
+  }
+
+  public toggleTheme(e: Event): void {
+    e.stopPropagation();
+
+    this.isDark = !this.isDark;
+    document.body.classList.toggle('dark-theme');
   }
 }
