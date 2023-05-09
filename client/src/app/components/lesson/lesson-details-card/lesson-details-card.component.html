@@ -1,0 +1,18 @@
+<div class="details-container">
+  <div class="header">
+    <div class="image">
+      <img
+        mat-card-image
+        [src]="lessonDetails.previewImageLink + '/cover.webp'"
+        alt="{{ lessonDetails.title }}"
+      />
+    </div>
+    <h3>{{ lessonDetails.title }}</h3>
+  </div>
+  <p>Start date: {{ lessonDetails.launchDate | date }}</p>
+  <p>Status: {{ lessonDetails.status }}</p>
+  <h4>Duration: {{ countMinutes(lessonDetails.duration) }} minutes.</h4>
+  <h4>Description:</h4>
+  <p>{{ lessonDetails.description }}</p>
+  <h4>Number of lessons: {{ lessonDetails.lessons.length }}</h4>
+</div>

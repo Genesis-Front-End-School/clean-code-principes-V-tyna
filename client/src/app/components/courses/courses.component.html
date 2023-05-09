@@ -1,0 +1,27 @@
+<div class="main-container">
+  <div
+    *ngIf="courses$ | async as courses; else loader"
+    class="courses-container"
+  >
+    <div *ngFor="let course of courses.courses">
+      <a [routerLink]="'/course/' + course.id" class="lesson-link"
+        ><app-course-card [course]="course"></app-course-card
+      ></a>
+    </div>
+  </div>
+  <mat-paginator
+    (page)="handlePageEvent($event)"
+    [length]="allCoursesLength"
+    [pageSizeOptions]="[10, 5]"
+    [pageSize]="pageSize"
+    aria-label="Select page"
+    class="paginator"
+  >
+  </mat-paginator>
+</div>
+
+<ng-template #loader>
+  <div class="loader">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>

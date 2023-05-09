@@ -1,0 +1,92 @@
+.card {
+  max-width: 410px;
+  height: 500px;
+  display: flex;
+  margin: 1rem;
+  background-color: var(--elem-color);
+  color: var(--text-color);
+  justify-content: space-around;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #bad7df56;
+  transition: all 0.3s ease-in-out;
+}
+
+.card p {
+  padding: 0.5rem;
+}
+
+.starts {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.starts p {
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+.skills {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0 16px;
+}
+
+.skills p {
+  margin-bottom: 0;
+}
+
+.subtitle-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1rem 0 1rem;
+  color: var(--secondary-text-color);
+}
+
+.mat-mdc-card-subtitle {
+  color: var(--secondary-text-color);
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  min-height: 180px;
+}
+
+.content-container img {
+  width: 100%;
+}
+
+.content-container video {
+  height: 180px;
+}
+
+.hide-element {
+  display: none;
+}
+
+.mdc-linear-progress__bar-inner {
+  border-color: #f6f6f6;
+}
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: #4d9aaf;
+}
+
+.mat-mdc-card-content {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .card {
+    max-width: 300px;
+    margin: 0.5rem;
+  }
+}

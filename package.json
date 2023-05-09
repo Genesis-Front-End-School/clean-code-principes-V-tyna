@@ -1,0 +1,24 @@
+{
+  "name": "app-for-learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && npm run start\" \"cd client && npm run start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/V-tyna/course-test-task.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/V-tyna/course-test-task/issues"
+  },
+  "homepage": "https://github.com/V-tyna/course-test-task#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "node-fetch": "^2.6.9"
+  }
+}
