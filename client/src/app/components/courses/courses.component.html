@@ -4,9 +4,9 @@
     class="courses-container"
   >
     <div *ngFor="let course of courses.courses">
-      <a [routerLink]="'/course/' + course.id" class="lesson-link"
-        ><app-course-card [course]="course"></app-course-card
-      ></a>
+      <a [routerLink]="'/course/' + course.id" class="lesson-link">
+        <app-course-card [course]="course"></app-course-card>
+      </a>
     </div>
   </div>
   <mat-paginator

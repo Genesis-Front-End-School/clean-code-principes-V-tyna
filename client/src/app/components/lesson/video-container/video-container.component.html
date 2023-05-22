@@ -24,5 +24,8 @@
   <div>
     Current speed is: <span class="speed-value">{{ currentSpeed }}</span>
   </div>
-  <button (click)="togglePictureInPicture()">Toggle picture-in-picture</button>
+  <ccl-button
+    [clickHandlerFn]="togglePictureInPicture.bind(this)"
+    [buttonName]="'Toggle picture-in-picture'"
+  ></ccl-button>
 </div>

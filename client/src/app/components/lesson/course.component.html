@@ -8,9 +8,9 @@
         ></app-video-container>
       </div>
       <div class="lesson-details-container">
-        <app-lesson-details-card
+        <ccl-lesson-details-card
           [lessonDetails]="course"
-        ></app-lesson-details-card>
+        ></ccl-lesson-details-card>
       </div>
     </div>
     <div class="lessons-list">
@@ -21,13 +21,15 @@
     </div>
   </div>
 </div>
+
 <ng-template #loader>
   <div class="loader">
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>
+
 <ng-template #notFound>
   <div class="not-found">
-    <app-error-page></app-error-page>
+    <ccl-error></ccl-error>
   </div>
 </ng-template>

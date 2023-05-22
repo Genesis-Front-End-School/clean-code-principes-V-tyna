@@ -21,24 +21,6 @@ video {
   color: black;
 }
 
-.speed-info button {
-  padding: 1rem;
-  background-color: var(--secondary-btn-bg-color);
-  color: var(--secondary-btn-txt-color);
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  box-shadow: 3px 3px 8px #ccc;
-  transition: all 0.3s ease-in-out;
-}
-
-.speed-info button:hover {
-  cursor: pointer;
-  background-color: var(--btn-bg-color);
-  color: var(--btn-txt-color);
-  transition: all 0.3s ease-in-out;
-}
-
 .video-container {
   position: relative;
   background-color: var(--bkg-color);

@@ -1,0 +1,14 @@
+{
+  "name": "courses-components-lib",
+  "version": "0.0.1",
+  "scripts": {
+    "build:lib": "ng build courses-components-lib --watch"
+  },
+  "peerDependencies": {
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

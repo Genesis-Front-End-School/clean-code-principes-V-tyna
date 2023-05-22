@@ -1,3 +1,4 @@
+import { CoursesComponentsModule } from 'courses-components-lib';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
@@ -18,9 +19,7 @@ import { AppComponent } from './app.component';
 import { CourseCardComponent } from './components/courses/course-card/course-card.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { HeaderComponent } from './components/header/header.component';
 import { CourseComponent } from './components/lesson/course.component';
-import { LessonDetailsCardComponent } from './components/lesson/lesson-details-card/lesson-details-card.component';
 import { LessonsListComponent } from './components/lesson/lessons-list/lessons-list.component';
 import { VideoContainerComponent } from './components/lesson/video-container/video-container.component';
 
@@ -31,8 +30,6 @@ import { VideoContainerComponent } from './components/lesson/video-container/vid
     CourseComponent,
     CoursesComponent,
     ErrorPageComponent,
-    HeaderComponent,
-    LessonDetailsCardComponent,
     LessonsListComponent,
     VideoContainerComponent,
   ],
@@ -40,6 +37,7 @@ import { VideoContainerComponent } from './components/lesson/video-container/vid
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CoursesComponentsModule,
     HttpClientModule,
     MatCardModule,
     MatDividerModule,

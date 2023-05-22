@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { mockLessonDetailsData } from '../../../configs/mock-data/lesson-detail.mock';
+import { mockLessonDetailsData } from '../configs/mock-data/lesson-detail.mock';
 import { LessonDetailsCardComponent } from './lesson-details-card.component';
 
 describe('LessonDetailsCardComponent', () => {

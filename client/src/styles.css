@@ -1,8 +1,6 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -19,6 +17,7 @@ body {
   --elem-color: #fff;
   --header-bkg-color: #bad7df;
 }
+
 body.dark-theme {
   --text-color: #eee;
   --secondary-text-color: #c4d0ff;
